@@ -11,6 +11,8 @@ public class MultipleItem implements MultiItemEntity {
     public static final int IMG = 2;
 
     private int itemType;
+    public String text;
+    public int imgResource;
 
     public MultipleItem(int itemType) {
         this.itemType = itemType;
@@ -22,10 +24,10 @@ public class MultipleItem implements MultiItemEntity {
     }
 
     public String getText() {
-        return "刘贤俊";
+        return text;
     }
 
     public int getUrl() {
-        return R.drawable.ic_launcher;
+        return imgResource;
     }
 }

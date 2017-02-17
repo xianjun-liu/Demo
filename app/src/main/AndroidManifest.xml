@@ -28,6 +28,22 @@
         <activity
             android:name=".activity.RecyclerViewActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.DataBaseActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.PlRefreshRecyclerViewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.MultipleRecyclerViewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.SwipeRefreshRecyclerViewActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

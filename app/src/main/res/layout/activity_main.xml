@@ -6,22 +6,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+    <TextView
         android:id="@+id/btn_video"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/BtnStytle"
         android:text="加载本地视频"/>
 
-    <Button
+    <View style="@style/split"/>
+
+    <TextView
         android:id="@+id/btn_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/BtnStytle"
         android:text="日历"/>
 
-    <Button
+    <View style="@style/split"/>
+
+    <TextView
         android:id="@+id/btn_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/BtnStytle"
         android:text="Recyclerview 应用"/>
+
+    <View style="@style/split"/>
+
+    <TextView
+        android:id="@+id/btn_database"
+        style="@style/BtnStytle"
+        android:text="数据库的增删改查"/>
+
+    <View style="@style/split"/>
 
 </LinearLayout>

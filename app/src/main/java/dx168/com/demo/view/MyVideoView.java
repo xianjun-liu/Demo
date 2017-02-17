@@ -1,7 +1,9 @@
 package dx168.com.demo.view;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.widget.VideoView;
 
 /**
@@ -23,37 +25,19 @@ public class MyVideoView extends VideoView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        float measuredWidth = measureWidth(widthMeasureSpec);
-        float measureHeight = measureHeight(heightMeasureSpec);
-        setMeasuredDimension((int) measuredWidth, (int) measureHeight);
+        //我们重新计算高度
+        int width = getDefaultSize(0, widthMeasureSpec);
+        int height = getDefaultSize(0, heightMeasureSpec);
+        setMeasuredDimension(width, height);
     }
 
-    private float measureHeight(int heightMeasureSpec) {
-        int mode = MeasureSpec.getMode(heightMeasureSpec);
-        float size = MeasureSpec.getSize(heightMeasureSpec); //系统测量的高度
-        float result = 0;
-        if (mode == MeasureSpec.EXACTLY) {
-            result = size;
-        } else {
-            if (mode == MeasureSpec.AT_MOST) {
-                result = Math.min(result,size);
-            }
-        }
-        return result;
+    @Override
+    public void setOnPreparedListener(MediaPlayer.OnPreparedListener l) {
+        super.setOnPreparedListener(l);
     }
 
-    private float measureWidth(int widthMeasureSpec) {
-        int mode = MeasureSpec.getMode(widthMeasureSpec);
-        float size = MeasureSpec.getSize(widthMeasureSpec);
-
-        float result = 500;
-
-        if (mode == MeasureSpec.EXACTLY) {
-            result = size;
-        } else if (mode == MeasureSpec.AT_MOST) {
-            result = Math.min(result,size);
-        }
-        return result;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
     }
 }

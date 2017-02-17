@@ -21,6 +21,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     private Context context;
     private OnItemClickListener listener;
 
+    /**
+     * 给条目设置点击和长按的监听
+     */
     public interface OnItemClickListener {
         void onClick(View view, int position);
 

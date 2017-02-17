@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleView">
+        <attr name="title_color" format="color" />
+        <attr name="title_back_ground" format="color" />
+        <attr name="left_drawable" format="reference" />
+    </declare-styleable>
+
+    <color name="default_title_bg" >#ffffff</color>
+    <color name="default_title_color" >#000000</color>
+
+</resources>

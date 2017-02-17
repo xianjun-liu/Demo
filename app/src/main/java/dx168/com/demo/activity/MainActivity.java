@@ -30,4 +30,8 @@ public class MainActivity extends BaseActivity {
         startActivity(RecyclerViewActivity.class);
     }
 
+    @OnClick(R.id.btn_database)
+    public void database() {
+        startActivity(DataBaseActivity.class);
+    }
 }
