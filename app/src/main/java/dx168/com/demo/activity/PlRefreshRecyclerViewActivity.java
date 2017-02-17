@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +11,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dx168.com.demo.R;
+import dx168.com.demo.apapter.BasicAdapter;
+import dx168.com.demo.apapter.PlAdapter;
 import dx168.com.demo.divider.LDividerItemDecoration;
 import dx168.com.demo.view.RefreshLayout;
 
@@ -25,7 +24,8 @@ import dx168.com.demo.view.RefreshLayout;
 public class PlRefreshRecyclerViewActivity extends BaseActivity {
     @Bind(R.id.re) RecyclerView recyclerView;
     @Bind(R.id.refresh) RefreshLayout refreshLayout;
-    private MyAdapter adapter;
+//    private MyAdapter adapter;
+    private PlAdapter adapter;
     private int flag;
 
     @Override
@@ -36,7 +36,18 @@ public class PlRefreshRecyclerViewActivity extends BaseActivity {
 //        recyclerView.setLayoutManager(new GridLayoutManager(this,3,GridLayoutManager.VERTICAL,false));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new LDividerItemDecoration(this, LDividerItemDecoration.VERTICAL_LIST));
-        adapter = new MyAdapter();
+//        adapter = new MyAdapter();
+        adapter = new PlAdapter();
+        adapter.setOnItemEventListener(new BasicAdapter.OnItemEventListener() {
+            @Override
+            public void onItemEvent(RefreshLayout.Adapter adapter, int position, int event, Object data) {
+                if (event == ((PlAdapter)adapter).LEFT_CLICK) {
+                    showLongToast("左边被点击了，position＝" + position + " data=" + data);
+                } else if (event == ((PlAdapter)adapter).RIGHT_CLICK) {
+                    showLongToast("右边被点击了，position＝" + position);
+                }
+            }
+        });
         refreshLayout.setAdapter(recyclerView,adapter);
         refreshLayout.setOnRefreshHandler(new RefreshLayout.OnRefreshHandler() {
             @Override
@@ -84,35 +95,35 @@ public class PlRefreshRecyclerViewActivity extends BaseActivity {
         refreshLayout.autoRefresh();
     }
 
-    private class MyAdapter extends RefreshLayout.Adapter {
-
-        List<String> datas = new ArrayList<>();
-
-        public void setDatas(List<String> datas) {
-            this.datas = datas;
-            notifyDataSetChanged();
-        }
-
-        public void addDatas(List<String> datas) {
-            this.datas.addAll(datas);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateItemHolder(ViewGroup parent, int viewType) {
-            return new RecyclerView.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false)) {
-            };
-        }
-
-        @Override
-        public void onBindItemHolder(final RecyclerView.ViewHolder holder, int position) {
-            TextView tv = (TextView) holder.itemView.findViewById(R.id.tv_content);
-            tv.setText(datas.get(position));
-        }
-
-        @Override
-        public int getCount() {
-            return datas.size();
-        }
-    }
+//    private class MyAdapter extends RefreshLayout.Adapter {
+//
+//        List<String> datas = new ArrayList<>();
+//
+//        public void setDatas(List<String> datas) {
+//            this.datas = datas;
+//            notifyDataSetChanged();
+//        }
+//
+//        public void addDatas(List<String> datas) {
+//            this.datas.addAll(datas);
+//            notifyDataSetChanged();
+//        }
+//
+//        @Override
+//        public RecyclerView.ViewHolder onCreateItemHolder(ViewGroup parent, int viewType) {
+//            return new RecyclerView.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false)) {
+//            };
+//        }
+//
+//        @Override
+//        public void onBindItemHolder(final RecyclerView.ViewHolder holder, int position) {
+//            TextView tv = (TextView) holder.itemView.findViewById(R.id.tv_content);
+//            tv.setText(datas.get(position));
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return datas.size();
+//        }
+//    }
 }

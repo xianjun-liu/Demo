@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn_recyclerview)
     public void recyclerView() {
-        startActivity(RecyclerViewActivity.class);
+        startActivity(RecyclerViewTestActivity.class);
     }
 
     @OnClick(R.id.btn_database)

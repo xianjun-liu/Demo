@@ -28,6 +28,7 @@ public class SwipeRefreshRecyclerViewActivity extends BaseActivity {
     private RefreshFootAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     private int lastVisibleItem;
+    private static final int TOTAL_SIZE = 60;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +78,10 @@ public class SwipeRefreshRecyclerViewActivity extends BaseActivity {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                if (lastVisibleItem == TOTAL_SIZE) {
+                    adapter.changeMoreStatus(RefreshFootAdapter.NO_MORE_DATA);
+                    return;
+                }
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     adapter.changeMoreStatus(RefreshFootAdapter.LOADING_MORE);
                     new Handler().postDelayed(new Runnable() {

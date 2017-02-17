@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public class RefreshFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public static final int  PULLUP_LOAD_MORE=0;
     //正在加载中
     public static final int  LOADING_MORE=1;
+    //上拉加载失败
+    public static final int  LOADING_FAILE=2;
+    //数据加载完毕
+    public static final int  NO_MORE_DATA=3;
     //上拉加载更多状态-默认为0
     private int load_more_status=0;
     private LayoutInflater mInflater;
@@ -86,6 +91,13 @@ public class RefreshFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 case LOADING_MORE:
                     footViewHolder.foot_view_item_tv.setText("正在加载更多数据...");
                     break;
+                case LOADING_FAILE:
+                    footViewHolder.foot_view_item_tv.setText("数据加载失败，请重试");
+                    break;
+                case NO_MORE_DATA:
+                    footViewHolder.foot_view_item_tv.setText("数据已加载完毕");
+                    footViewHolder.foot_view_progressbar.setVisibility(View.GONE);
+                    break;
             }
         }
 
@@ -123,9 +135,11 @@ public class RefreshFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      */
     public static class FootViewHolder extends  RecyclerView.ViewHolder{
         private TextView foot_view_item_tv;
+        private ProgressBar foot_view_progressbar;
         public FootViewHolder(View view) {
             super(view);
             foot_view_item_tv=(TextView)view.findViewById(R.id.foot_view_item_tv);
+            foot_view_progressbar=(ProgressBar)view.findViewById(R.id.foot_view_progressbar);
         }
     }
 
@@ -150,20 +164,11 @@ public class RefreshFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      *  //正在加载中
      * LOADING_MORE=1;
      * //加载完成已经没有更多数据了
-     * NO_MORE_DATA=2;
+     * NO_MORE_DATA=3;
      * @param status
      */
     public void changeMoreStatus(int status){
         load_more_status=status;
         notifyDataSetChanged();
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mTv_content;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            mTv_content =  (TextView) itemView.findViewById(R.id.tv_content);
-        }
     }
 }

@@ -1,82 +1,44 @@
 package dx168.com.demo.apapter;
 
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import butterknife.Bind;
 import dx168.com.demo.R;
 
 /**
  * Created by lxj on 17/2/17.
  */
 
-public class PlAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-    static final int STATE_MORE = 0, STATE_LOAIND = 1, STATE_END = 2, STATE_ERROR = 3;
-    int state = STATE_MORE;
+public class PlAdapter extends BasicAdapter<String>{
+    public static final int LEFT_CLICK = 0;
+    public static final int RIGHT_CLICK = 1;
 
-    public void setState(int state) {
-        if (this.state != state) {
-            this.state = state;
-            notifyItemChanged(getItemCount() - 1);
-        }
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    List<String> datas = new ArrayList<>();
-    public PlAdapter( List<String> data) {
-        super(R.layout.item_recycler, data);
-        this.datas = data;
+    public PlAdapter() {
+        super(R.layout.item_pl, PlViewHolder.class);
     }
 
     @Override
-    protected void convert(BaseViewHolder holder, String item) {
-        holder.setText(R.id.tv_content, item);
-        int position = holder.getLayoutPosition();
-        if (position == getFooterLayoutCount()) {
-            ProgressBar progressBar = (ProgressBar) holder.itemView.findViewById(R.id.foot_view_progressbar);
-            TextView textView = (TextView) holder.itemView.findViewById(R.id.foot_view_item_tv);
-            if (state == STATE_END) {
-                progressBar.setVisibility(View.GONE);
-                textView.setText("没有更多了");
-            } else if (state == STATE_MORE) {
-                progressBar.setVisibility(View.GONE);
-                textView.setText("点击加载");
-            } else if (state == STATE_LOAIND) {
-                progressBar.setVisibility(View.VISIBLE);
-                textView.setText("加载中...");
-            } else if (state == STATE_ERROR) {
-                progressBar.setVisibility(View.GONE);
-                textView.setText("加载失败,点击重新加载");
+    protected void bindData(final int position, Object o, final String data) {
+        PlViewHolder holder = (PlViewHolder) o;
+        holder.tv_1.setText(data);
+        holder.tv_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emitEvent(position, LEFT_CLICK, data);
             }
-//            holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if (onRefreshHandler != null && !isRefresh && (state == STATE_MORE || state == STATE_ERROR)) {
-//                        setState(STATE_LOAIND);
-//                        onRefreshHandler.loadMore();
-//                    }
-//                }
-//            });
-        }
+        });
 
+        holder.tv_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emitEvent(position, RIGHT_CLICK, data);
+            }
+        });
     }
 
-    public void setDatas(List<String> datas) {
-        this.datas = datas;
-        notifyDataSetChanged();
-    }
-
-    public void addDatas(List<String> datas) {
-        this.datas.addAll(datas);
-        notifyDataSetChanged();
+    public static class PlViewHolder {
+        @Bind(R.id.tv_1)       TextView    tv_1;
+        @Bind(R.id.tv_2)       TextView    tv_2;
     }
 }

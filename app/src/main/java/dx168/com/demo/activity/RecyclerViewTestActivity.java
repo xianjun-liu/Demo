@@ -22,7 +22,7 @@ import dx168.com.demo.divider.LDividerItemDecoration;
  * Created by lxj on 17/2/14.
  */
 
-public class RecyclerViewActivity extends BaseActivity {
+public class RecyclerViewTestActivity extends BaseActivity {
 
     @Bind(R.id.recycler_view)       RecyclerView    mRecyclerView;
     private ArrayList<String> data = new ArrayList<>();
