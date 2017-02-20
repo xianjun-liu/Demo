@@ -44,6 +44,10 @@
         <activity
             android:name=".activity.SwipeRefreshRecyclerViewActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.CCBCircleActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

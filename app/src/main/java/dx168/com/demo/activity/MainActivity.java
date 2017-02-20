@@ -34,4 +34,9 @@ public class MainActivity extends BaseActivity {
     public void database() {
         startActivity(DataBaseActivity.class);
     }
+
+    @OnClick(R.id.btn_ccbcircle)
+    public void circle() {
+        startActivity(CCBCircleActivity.class);
+    }
 }

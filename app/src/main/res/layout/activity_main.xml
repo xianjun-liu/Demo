@@ -34,4 +34,11 @@
 
     <View style="@style/split"/>
 
+    <TextView
+        android:id="@+id/btn_ccbcircle"
+        style="@style/BtnStytle"
+        android:text="建行转盘"/>
+
+    <View style="@style/split"/>
+
 </LinearLayout>
