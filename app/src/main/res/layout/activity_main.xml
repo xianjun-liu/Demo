@@ -41,4 +41,11 @@
 
     <View style="@style/split"/>
 
+    <TextView
+        android:id="@+id/btn_dagger2"
+        style="@style/BtnStytle"
+        android:text="Dagger2 Test"/>
+
+    <View style="@style/split"/>
+
 </LinearLayout>

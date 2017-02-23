@@ -5,6 +5,7 @@ import android.os.Bundle;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dx168.com.demo.R;
+import dx168.com.demo.dagger2.Dagger2Activity;
 
 public class MainActivity extends BaseActivity {
 
@@ -38,5 +39,10 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.btn_ccbcircle)
     public void circle() {
         startActivity(CCBCircleActivity.class);
+    }
+
+    @OnClick(R.id.btn_dagger2)
+    public void dagger2() {
+        startActivity(Dagger2Activity.class);
     }
 }

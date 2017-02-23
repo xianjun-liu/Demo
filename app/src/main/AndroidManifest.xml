@@ -48,6 +48,10 @@
         <activity
             android:name=".activity.CCBCircleActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".dagger2.Dagger2Activity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

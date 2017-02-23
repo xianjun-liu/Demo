@@ -3,4 +3,15 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_1"
+        style="@style/BtnStytle"
+        android:text="Inject和Component的使用"/>
+    <View style="@style/split"/>
+
+    <TextView
+        android:id="@+id/tv_2"
+        style="@style/BtnStytle"
+        android:text="Modulet和Provides的使用"/>
+    <View style="@style/split"/>
 </LinearLayout>
